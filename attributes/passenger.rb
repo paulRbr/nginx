@@ -22,7 +22,7 @@
 
 node.default['nginx']['passenger']['version'] = '3.0.19'
 
-if node['rvm'].attribute?('default_ruby')
+if node.attribute?('rvm') && node['rvm'].attribute?('default_ruby')
   node.default['nginx']['passenger']['root'] = "#{node['rvm']['root_path']}/gems/#{node['rvm']['default_ruby']}/gems/passenger-#{node['nginx']['passenger']['version']}"
   node.default['nginx']['passenger']['ruby'] = "#{node['rvm']['root_path']}/wrappers/default/ruby"
 elsif node['languages'].attribute?('ruby')
